@@ -1,6 +1,6 @@
-import React from 'react'
-import IconTwitter from '../components/IconTwitter'
-import Link from 'next/link'
+import React from 'react';
+import IconTwitter from '../components/IconTwitter';
+import Button from '../components/Button';
 
 function login() {
   return (
@@ -16,11 +16,9 @@ function login() {
           <h2 className="mt-8 text-2xl font-bold md:mt-12 md:text-4xl  lg:mt-16 lg:text-3xl">
             Únete a Twitter hoy mismo.
           </h2>
-          <Link href="/register">
-            <a className="mt-5 w-80 rounded-full bg-twitter-blue-normal py-2 text-center font-semibold text-white duration-300 hover:bg-twitter-blue-medium md:text-xl lg:mt-12">
-              Registrate
-            </a>
-          </Link>
+          <Button href="/register" type="primary">
+            Register
+          </Button>
           <p className="mx-8 mt-1 text-xs md:mx-36 md:mt-2 md:text-sm lg:mx-10 lg:text-center">
             Al registrarte, aceptas los Términos de servicio y la Política de
             privacidad, incluída la política de Uso de Cookies.
@@ -28,18 +26,16 @@ function login() {
           <p className="mt-12 mr-36 font-bold md:mr-0">
             ¿Ya tienes una cuenta?
           </p>
-          <Link href="/">
-            <a className="mt-5 mb-10 w-80 rounded-full border border-twitter-blue-normal bg-white py-2 text-center font-semibold text-twitter-blue-normal duration-300 hover:bg-twitter-blue-light md:text-xl">
-              Iniciar sesión
-            </a>
-          </Link>
+          <Button href="/" type="secondary">
+            Iniciar sesión
+          </Button>
         </div>
         <div className="flex h-80 w-full items-center justify-center bg-backgroundTwitter bg-cover bg-no-repeat lg:h-full">
           <IconTwitter className="h-auto w-32 fill-white lg:w-72" />
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default login
+export default login;
