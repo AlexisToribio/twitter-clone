@@ -4,11 +4,10 @@ interface IProps {
   children: React.ReactNode;
   style: 'primary' | 'secondary';
   type: 'button' | 'submit';
-  toggleShow: boolean;
-  setToggleShow: (toggleShow: boolean) => void;
+  handleClick?: () => void;
 }
 
-function Button({ children, style, toggleShow, setToggleShow, type }: IProps) {
+function Button({ children, style, handleClick = () => {}, type }: IProps) {
   const commonClass =
     'mt-5 w-80 rounded-full py-2 text-center font-semibold md:text-xl';
   let varClass = '';
@@ -26,11 +25,7 @@ function Button({ children, style, toggleShow, setToggleShow, type }: IProps) {
     <button
       type={type}
       className={`${commonClass} ${varClass}`}
-      onClick={() =>
-        type !== 'submit'
-          ? setToggleShow(!toggleShow)
-          : console.log('this is a submit')
-      }
+      onClick={handleClick}
     >
       {children}
     </button>

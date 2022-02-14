@@ -13,9 +13,11 @@ export default function Home() {
       <Head>
         <title>Twitter clone</title>
       </Head>
-      <Modal toggleShow={toggleShow} setToggleShow={setToggleShow}>
-        <Signup toggleShow={toggleShow} setToggleShow={setToggleShow} />
-      </Modal>
+      {toggleShow && (
+        <Modal setToggleShow={setToggleShow}>
+          <Signup setToggleShow={setToggleShow} />
+        </Modal>
+      )}
       <div className="lg:flex lg:h-screen lg:w-screen lg:flex-row-reverse">
         <div className="flex w-full max-w-md flex-col flex-wrap items-center md:max-w-full lg:justify-center">
           <div className="my-12 flex w-full lg:mt-0 lg:justify-center">
@@ -29,8 +31,7 @@ export default function Home() {
           </h2>
           <Button
             type="button"
-            toggleShow={toggleShow}
-            setToggleShow={setToggleShow}
+            handleClick={() => setToggleShow(true)}
             style="primary"
           >
             Registrate
@@ -44,8 +45,7 @@ export default function Home() {
           </p>
           <Button
             type="button"
-            toggleShow={toggleShow}
-            setToggleShow={setToggleShow}
+            handleClick={() => setToggleShow(true)}
             style="secondary"
           >
             Iniciar sesión
