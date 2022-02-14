@@ -1,82 +1,60 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import React, { useState } from 'react';
+import IconTwitter from '../components/IconTwitter';
+import Button from '../components/Button';
+import Modal from '../components/Modal';
+import Signup from './signup';
 
 export default function Home() {
+  const [toggleShow, setToggleShow] = useState(false);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="relative flex justify-center">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Twitter clone</title>
       </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
+      <Modal toggleShow={toggleShow} setToggleShow={setToggleShow}>
+        <Signup toggleShow={toggleShow} setToggleShow={setToggleShow} />
+      </Modal>
+      <div className="lg:flex lg:h-screen lg:w-screen lg:flex-row-reverse">
+        <div className="flex w-full max-w-md flex-col flex-wrap items-center md:max-w-full lg:justify-center">
+          <div className="my-12 flex w-full lg:mt-0 lg:justify-center">
+            <IconTwitter className="ml-8 h-auto w-12 fill-twitter-blue-normal md:ml-20 md:w-16 lg:ml-0 lg:w-20" />
+          </div>
+          <h1 className="ml-8 mr-32 pt-2 text-4xl font-bold leading-normal md:mx-20 md:pt-0 md:text-6xl lg:mx-0 lg:text-center">
+            Lo que está pasando ahora
+          </h1>
+          <h2 className="mt-8 text-2xl font-bold md:mt-12 md:text-4xl  lg:mt-16 lg:text-3xl">
+            Únete a Twitter hoy mismo.
+          </h2>
+          <Button
+            type="button"
+            toggleShow={toggleShow}
+            setToggleShow={setToggleShow}
+            style="primary"
           >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
+            Registrate
+          </Button>
+          <p className="mx-8 mt-1 text-xs md:mx-36 md:mt-2 md:text-sm lg:mx-10 lg:text-center">
+            Al registrarte, aceptas los Términos de servicio y la Política de
+            privacidad, incluída la política de Uso de Cookies.
+          </p>
+          <p className="mt-12 mr-36 font-bold md:mr-0">
+            ¿Ya tienes una cuenta?
+          </p>
+          <Button
+            type="button"
+            toggleShow={toggleShow}
+            setToggleShow={setToggleShow}
+            style="secondary"
           >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            Iniciar sesión
+          </Button>
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
-        </a>
-      </footer>
+        <div className="flex h-80 w-full items-center justify-center bg-backgroundTwitter bg-cover bg-no-repeat lg:h-full">
+          <IconTwitter className="h-auto w-32 fill-white lg:w-72" />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
