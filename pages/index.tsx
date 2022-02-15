@@ -4,18 +4,25 @@ import IconTwitter from '../components/IconTwitter';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import Signup from './signup';
+import Signin from './signin';
 
 export default function Home() {
-  const [toggleShow, setToggleShow] = useState(false);
+  const [toggleShowSU, setToggleShowSU] = useState(false);
+  const [toggleShowSI, setToggleShowSI] = useState(false);
 
   return (
     <div className="relative flex justify-center">
       <Head>
         <title>Twitter clone</title>
       </Head>
-      {toggleShow && (
-        <Modal setToggleShow={setToggleShow}>
-          <Signup setToggleShow={setToggleShow} />
+      {toggleShowSU && (
+        <Modal setToggleShow={setToggleShowSU}>
+          <Signup setToggleShow={setToggleShowSU} />
+        </Modal>
+      )}
+      {toggleShowSI && (
+        <Modal setToggleShow={setToggleShowSI}>
+          <Signin setToggleShow={setToggleShowSI} />
         </Modal>
       )}
       <div className="lg:flex lg:h-screen lg:w-screen lg:flex-row-reverse">
@@ -31,7 +38,7 @@ export default function Home() {
           </h2>
           <Button
             type="button"
-            handleClick={() => setToggleShow(true)}
+            handleClick={() => setToggleShowSU(true)}
             style="primary"
           >
             Registrate
@@ -45,7 +52,7 @@ export default function Home() {
           </p>
           <Button
             type="button"
-            handleClick={() => setToggleShow(true)}
+            handleClick={() => setToggleShowSI(true)}
             style="secondary"
           >
             Iniciar sesión
