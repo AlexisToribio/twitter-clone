@@ -13,7 +13,11 @@ module.exports = {
       backgroundImage: {
         backgroundTwitter: "url('/assets/twitter.png')",
       },
+      width: {
+        '10%': '10%',
+        '90%': '90%',
+      },
     },
   },
   plugins: [],
-}
+};
