@@ -25,11 +25,7 @@ const schema = yup.object().shape({
   b_date: yup.string().required(),
 });
 
-type Props = {
-  setToggleShow: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-function Signup({ setToggleShow }: Props) {
+function Signup() {
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
   });

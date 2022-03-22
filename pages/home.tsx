@@ -12,7 +12,7 @@ function home() {
   useEffect(() => {
     setLoading(true);
     getAllTweets().then((tweets) => {
-      setData(tweets.data);
+      setData(tweets);
       setLoading(false);
     });
   }, []);

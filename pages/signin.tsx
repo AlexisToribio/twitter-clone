@@ -20,10 +20,6 @@ const schema = yup.object().shape({
   password: yup.string().required().min(8).max(30),
 });
 
-type Props = {
-  setToggleShow: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
 type userData = {
   data: {
     _id: string;
@@ -36,7 +32,7 @@ type userData = {
   token: string;
 };
 
-function Signin({ setToggleShow }: Props) {
+function Signin() {
   const router = useRouter();
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
