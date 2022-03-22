@@ -17,12 +17,12 @@ export default function Home() {
       </Head>
       {toggleShowSU && (
         <Modal setToggleShow={setToggleShowSU}>
-          <Signup setToggleShow={setToggleShowSU} />
+          <Signup />
         </Modal>
       )}
       {toggleShowSI && (
         <Modal setToggleShow={setToggleShowSI}>
-          <Signin setToggleShow={setToggleShowSI} />
+          <Signin />
         </Modal>
       )}
       <div className="lg:flex lg:h-screen lg:w-screen lg:flex-row-reverse">

@@ -1,9 +1,9 @@
 import axios from '../../config/axios';
-import { TweetsPostedResponse } from '../../types';
+import { Tweet } from '../../types';
 
 export const getAllTweets = () => {
-  return axios.get<TweetsPostedResponse>('/tweets/posted').then((res) => {
-    const { data } = res;
+  return axios.get('/tweets/posted').then((res) => {
+    const data: Tweet[] = res.data;
     console.log(data);
     return data;
   });

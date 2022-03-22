@@ -4,10 +4,10 @@ import { Tweet } from '../types';
 
 type Props = {
   setData: React.Dispatch<React.SetStateAction<Tweet[]>>;
-  setToggleShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setToggleShow?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function WriteTweet({ setData, setToggleShow }: Props) {
+function WriteTweet({ setData, setToggleShow = () => {} }: Props) {
   const [newTweet, setNewTweet] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewTweet(e.target.value);
