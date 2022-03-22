@@ -3,6 +3,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import Error from '../components/Error';
 import axios from '../config/axios';
+import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { CheckCircleIcon } from '@heroicons/react/solid';
@@ -36,6 +37,7 @@ type userData = {
 };
 
 function Signin({ setToggleShow }: Props) {
+  const router = useRouter();
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -50,6 +52,7 @@ function Signin({ setToggleShow }: Props) {
       .then((res: AxiosResponse<userData>) => {
         localStorage.setItem('auth-token', res.data.token);
         setSuccessful(!successful);
+        router.push('/home');
       })
       .catch((err) => {
         console.log(err);
@@ -64,13 +67,6 @@ function Signin({ setToggleShow }: Props) {
             <h1 className="text-xl font-semibold">Sesión iniciada</h1>
             <CheckCircleIcon className="mt-1.5 ml-1 h-4 w-4 text-green-600" />
           </div>
-          <Button
-            type="button"
-            handleClick={() => setToggleShow(false)}
-            style="primary"
-          >
-            Ok
-          </Button>
         </div>
       ) : (
         <FormProvider {...methods}>
@@ -101,7 +97,7 @@ function Signin({ setToggleShow }: Props) {
               <Error>Contraseña debe tener máximo 30 caracteres</Error>
             )}
             <Button type="submit" style="primary">
-              Registrar
+              Iniciar Sesión
             </Button>
           </form>
         </FormProvider>

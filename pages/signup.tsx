@@ -7,6 +7,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import axios from '../config/axios';
 import Error from '../components/Error';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
 
 type FormData = {
   name: string;
@@ -32,6 +33,7 @@ function Signup({ setToggleShow }: Props) {
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
   });
+  const router = useRouter();
   const [successful, setSuccessful] = useState(false);
   const onSubmit = methods.handleSubmit((data: FormData) => {
     const { name, email, password, b_date } = data;
@@ -46,6 +48,7 @@ function Signup({ setToggleShow }: Props) {
       .then((res) => {
         console.log(res);
         setSuccessful(!successful);
+        router.push('/home');
       })
       .catch((err) => {
         console.log(err);
@@ -60,13 +63,6 @@ function Signup({ setToggleShow }: Props) {
             <h1 className="text-xl font-semibold">Registro exitoso</h1>
             <CheckCircleIcon className="mt-1.5 ml-1 h-4 w-4 text-green-600" />
           </div>
-          <Button
-            type="button"
-            handleClick={() => setToggleShow(false)}
-            style="primary"
-          >
-            Ok
-          </Button>
         </div>
       ) : (
         <FormProvider {...methods}>

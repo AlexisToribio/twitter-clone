@@ -2,6 +2,12 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://twitter-clone-pts.herokuapp.com',
+  // headers: {
+  //   Authorization:
+  //     localStorage && localStorage.getItem('auth-token')
+  //       ? `Bearer ${localStorage.getItem('auth-token')}`
+  //       : '',
+  // },
 });
 
 instance.interceptors.request.use(
@@ -13,6 +19,7 @@ instance.interceptors.request.use(
         Authorization: `Bearer ${token}`,
       };
     }
+
     return config;
   },
   function (error) {
