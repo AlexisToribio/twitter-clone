@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
-import Layout from '../components/Layout';
+import React, { useEffect, useState } from 'react';
+import HomeLayout from '../components/HomeLayout';
+import WriteTweet from '../components/WriteTweet';
 import Tweet from '../components/Tweet';
-import Post from '../components/Post';
+import { getAllTweets } from '../services/tweets/getAllTweets';
+import { Tweet as TweetType } from '../types';
 
 function home() {
-  const [data, setData] = useState({
-    author: '',
-    content: '',
-    _id: '',
-    createdAt: '',
-    updatedAt: '',
-    __v: '',
-  });
+  const [data, setData] = useState<TweetType[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getAllTweets().then((tweets) => {
+      setData(tweets.data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
-    <Layout>
+    <HomeLayout setData={setData}>
       <div>
         <h1 className="mt-4 mb-5 w-full text-xl font-bold">Home</h1>
-        <Tweet data={data} setData={setData} />
-        <Post data={data} />
+        <WriteTweet setData={setData} />
+        {loading ? 'Cargando...' : <Tweet data={data} />}
       </div>
-    </Layout>
+    </HomeLayout>
   );
 }
 
