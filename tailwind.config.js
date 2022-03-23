@@ -17,6 +17,9 @@ module.exports = {
         '10%': '10%',
         '90%': '90%',
       },
+      minWidth: {
+        minWidthWriteTweet: '600px',
+      },
     },
   },
   plugins: [],

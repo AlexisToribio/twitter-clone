@@ -12,7 +12,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem('auth-token');
+    const token = window.localStorage.getItem('auth-token');
     if (token) {
       config.headers = {
         ...config.headers,
