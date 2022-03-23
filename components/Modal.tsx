@@ -1,19 +1,25 @@
 import React from 'react';
 import IconTwitter from '../components/IconTwitter';
 import { XIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
 
 type Props = {
   children: React.ReactNode;
-  setToggleShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setToggleShow?: React.Dispatch<React.SetStateAction<boolean>>;
+  usePath?: boolean;
 };
 
-function Modal({ children, setToggleShow }: Props) {
+function Modal({ children, setToggleShow = () => {}, usePath = true }: Props) {
+  const router = useRouter();
+  const handleClose = () => {
+    usePath ? router.push('/') : setToggleShow(false);
+  };
   return (
     <>
       <div className="absolute left-0 top-0 flex h-full w-screen items-center justify-center bg-slate-200/80">
         <div className="relative flex w-3/4 max-w-screen-md flex-col items-center rounded-xl bg-white">
           <button
-            onClick={() => setToggleShow(false)}
+            onClick={handleClose}
             className="absolute right-12 top-6 p-1 duration-300 hover:rounded-full hover:bg-gray-300"
           >
             <XIcon className="h-8 w-8" />

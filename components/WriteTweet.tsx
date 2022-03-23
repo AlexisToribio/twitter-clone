@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createTweet } from '../services/tweets/createTweet';
+import { createTweet } from '../services/tweets';
 import { Tweet } from '../types';
 
 type Props = {

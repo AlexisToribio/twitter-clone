@@ -1,30 +1,24 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React from 'react';
 import IconTwitter from '../components/IconTwitter';
 import Button from '../components/Button';
-import Modal from '../components/Modal';
-import Signup from './signup';
-import Signin from './signin';
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  const [toggleShowSU, setToggleShowSU] = useState(false);
-  const [toggleShowSI, setToggleShowSI] = useState(false);
+  const router = useRouter();
 
+  const handleSignin = () => {
+    router.push('/signin');
+  };
+
+  const handleSignup = () => {
+    router.push('/signup');
+  };
   return (
     <div className="relative flex justify-center">
       <Head>
         <title>Twitter clone</title>
       </Head>
-      {toggleShowSU && (
-        <Modal setToggleShow={setToggleShowSU}>
-          <Signup />
-        </Modal>
-      )}
-      {toggleShowSI && (
-        <Modal setToggleShow={setToggleShowSI}>
-          <Signin />
-        </Modal>
-      )}
       <div className="lg:flex lg:h-screen lg:w-screen lg:flex-row-reverse">
         <div className="flex w-full max-w-md flex-col flex-wrap items-center md:max-w-full lg:justify-center">
           <div className="my-12 flex w-full lg:mt-0 lg:justify-center">
@@ -36,11 +30,7 @@ export default function Home() {
           <h2 className="mt-8 text-2xl font-bold md:mt-12 md:text-4xl  lg:mt-16 lg:text-3xl">
             Únete a Twitter hoy mismo.
           </h2>
-          <Button
-            type="button"
-            handleClick={() => setToggleShowSU(true)}
-            style="primary"
-          >
+          <Button type="button" handleClick={handleSignup} style="primary">
             Registrate
           </Button>
           <p className="mx-8 mt-1 text-xs md:mx-36 md:mt-2 md:text-sm lg:mx-10 lg:text-center">
@@ -50,11 +40,7 @@ export default function Home() {
           <p className="mt-12 mr-36 font-bold md:mr-0">
             ¿Ya tienes una cuenta?
           </p>
-          <Button
-            type="button"
-            handleClick={() => setToggleShowSI(true)}
-            style="secondary"
-          >
+          <Button type="button" handleClick={handleSignin} style="secondary">
             Iniciar sesión
           </Button>
         </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HomeLayout from '../components/HomeLayout';
 import WriteTweet from '../components/WriteTweet';
 import Tweet from '../components/Tweet';
-import { getAllTweets } from '../services/tweets/getAllTweets';
+import { getAllTweets } from '../services/tweets';
 import { Tweet as TweetType } from '../types';
 
 function home() {
